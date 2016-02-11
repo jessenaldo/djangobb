@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<a href="{% url 'travels-dashboard' %}">Home</a>
+<a href="{% url 'users-logout' %}">Logout</a>
+
+<h1>{{plan.destination}}</h1>
+	<h3>Planned By: {{plan.created_by_user.profile.name}}</h3>
+	<h3>Description: {{plan.description}}</h3>
+	<h3>Travel Date From: {{plan.date_from|date:'M d Y'}}</h3>
+	<h3>Travel Date To: {{plan.date_to|date:'M d Y'}}</h3>
+
+<h1>Other users' joining the trip</h1>
+	{% for user in plan.joined_users.all %}
+		<li>{{user.profile.name}}</li>
+	{% endfor %}
+
+</body>
+</html>

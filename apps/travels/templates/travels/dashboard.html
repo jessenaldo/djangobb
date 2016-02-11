@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+
+
+<h1>Hello, {{user.profile.name}}!</h1>
+
+<a href="{% url 'users-logout' %}">Logout</a>
+<a href="{% url 'travels-add' %}">Add Travel Plan</a>
+
+<h3>Your Trip Schedules</h3>
+<table>
+	<tr>
+		<th>Destination</th>
+		<th>Travel Start Date</th>
+		<th>Travel End Date</th>
+		<th>Plan</th>
+	</tr>
+		{% for plan in myplans %}
+	<tr>
+			<td><a href="{% url 'travels-show' plan.id %}">{{plan.destination}}</a></td>
+			<td>{{plan.date_from|date:'M d Y'}}</td>
+			<td>{{plan.date_to|date:'M d Y'}}</td>
+			<td>{{plan.description}}</td>
+		{% endfor %}
+	</tr>
+
+
+<table>
+<h3>Other User's Travel Plans</h3>
+	<tr>
+		<th>Name</th>
+		<th>Destination</th>
+		<th>Travel Start Date</th>
+		<th>Travel End Date</th>
+		<th>Do You Want To Join?</th>
+	</tr>
+		{% for plan in otherplans %}
+			{% if plan.created_by_user.id != user.id %}
+				<tr>
+				<td>{{plan.created_by_user.profile.name}}</td>
+				<td><a href="{% url 'travels-show' plan.id %}">{{plan.destination}}</a></td>
+				<td>{{plan.date_from|date:'M d Y'}}</td>
+				<td>{{plan.date_to|date:'M d Y'}}</td>
+				<td><a href="{% url 'travels-join' plan.id %}">Join</a></td>
+			{% endif %}
+		{% endfor %}
+	</tr>
+</table>
+
+</body>
+</html>

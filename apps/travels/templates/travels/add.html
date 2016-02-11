@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add a new Plan!
+	</title>
+</head>
+<body>
+
+<a href="{% url 'travels-dashboard' %}">Home</a>
+<a href="{% url 'users-logout' %}">Logout</a>
+
+<h1>Add a Trip</h1>
+
+<form action="{% url 'travels-create' %}" method="post">
+{% csrf_token %}
+{{ form }}
+<input type="submit" value="Add">
+</form>
+</body>
+</html>
