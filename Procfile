@@ -1,1 +1,1 @@
-web: gunicorn dawa_alpha.wsgi --log-file -
+web: gunicorn djangobb.wsgi --log-file -
