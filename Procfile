@@ -1,1 +1,1 @@
-web: gunicorn djangobb.wsgi --log-file -
+web: gunicorn blackbeltdjango.wsgi --log-file -
